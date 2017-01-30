@@ -58,6 +58,8 @@ Diagramming server request cycle:
 
 Work in groups to implement OAuth for one of the following:
 
+Register for an developer account 
+
 - [Google](https://developers.google.com/accounts/docs/OAuth2WebServer)
 - [Facebook](https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow/v2.1)
 - [Dropbox](https://www.dropbox.com/developers/blog/45/using-oauth-20-with-the-core-api)
@@ -65,6 +67,10 @@ Work in groups to implement OAuth for one of the following:
 - [Spotify](https://developer.spotify.com/web-api/authorization-guide/)
 - [Instagram](https://www.instagram.com/developer/authentication/)
 - [Slack](https://api.slack.com/docs/oauth)
+
+- What parameters are required to redirect to the Oauth Provider?
+- What parameters are sent in the callback url?
+- What parameters must be exchanged for an access token?
 
 Create a Node Application with a basic OAuth login and then
 display information about that user.
