@@ -1,65 +1,71 @@
-# Setup
+# OAuth
 
-Visit the [developer section](https://github.com/settings/developers) on your Github settings page.
+### Learning Objectives
 
-Click on "Register a new application"
+#### Auth
 
-![:new_app](./assets/new_oauth_app.png)
+- Define authentication.
+- Define authorization.
+- Explain the difference between authentication and authorization.
+- Explain the purpose of encryption in computer security, and its relation to
+  authentication and authorization.
+- Explain what a session is, as well as its purpose in a web application.
+- Explain how sessions are implemented
 
-We can fill out this form anyway we like so let's add this:
+#### OAuth
 
-- [ ] Fill out "Application name" with "WDI Oauth Example"
+- Define OAuth and identify when it is being used.
+- Explain the purpose of the OAuth process.
+- Diagram three-legged authentication associated with OAuth.
+- (Applied) Register web applications for API access with OAuth providers.
 
-- [ ] Fill out "Authorization callback URL" with "http://127.0.0.1:3000/authorize"
+---
 
-# Keep it secret keep it safe
+OAuth is an open standard for authorization.
+The OAuth 2.0 authorization framework enables a third-party application to
+obtain limited access to an HTTP service.
 
-![:client_secret](./assets/client_secret.png)
+Three legged does not imply a certain type of app as in "browser based". Three
+legged means that an application acts on the direct behalf of a user. In the
+three legged scenarios there is
 
-Take note of your Client ID and Client secret!
+- an application (consumer),
+- a user (resource owner) and
+- an API (service provider).
 
-We'll need those for oAuth, but we don't want to share them on Github. We want to keep them
-in our local environment and then access them via `process.env`
+#### [Explanation of OAuth 2.0 protocol](http://stackoverflow.com/questions/7561631/oauth-2-0-benefits-and-use-cases-why)
 
-One way is to add them to our __Bash Profile__
+A main point of the OAuth specs is for a content provider (e.g. Facebook,
+Twitter, etc.) to assure a server (e.g. a Web app that wishes to talk to the
+content provider on behalf of the client) that the client has some identity.
 
-```
-$ echo 'export CLIENT_ID=VALUE' >> ~/.bash_profile
-```
-> After you set an environmental variable in your Bash Profile you'll have to restart your terminal!
+What three-legged authentication offers is the ability to do that without
+the client or server ever needing to know the details of that identity (e.g.
+username and password).
 
-We may work on multiple projects with different Client IDS and Secrets for the same APIs.
-A better way would be to store the environmental variables per project using the `dotenv`
-module.
+#### Preflight
 
-# Dotenv
+Diagramming server request cycle:
 
-```
-https://www.npmjs.com/package/dotenv
-```
+![:image](https://developers.google.com/accounts/images/webflow.png)
 
-# Oauth Flow
+### Code Along
 
-1. The redirect
+[Walk-through of Github OAuth.](github.md)
+[docs](https://developer.github.com/v3/oauth/)
 
-We send the user to Github to login
+### Group Exercise
 
-https://developer.github.com/v3/oauth/#1-redirect-users-to-request-github-access
+Work in groups to implement OAuth for one of the following:
 
-Github sends us back a code to exchange
+- [Google](https://developers.google.com/accounts/docs/OAuth2WebServer)
+- [Facebook](https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow/v2.1)
+- [Dropbox](https://www.dropbox.com/developers/blog/45/using-oauth-20-with-the-core-api)
+- [LinkedIn](https://developer.linkedin.com/documents/authentication)
+- [Spotify](https://developer.spotify.com/web-api/authorization-guide/)
+- [Instagram](https://www.instagram.com/developer/authentication/)
+- [Slack](https://api.slack.com/docs/oauth)
 
-2. The access token 
+Create a Node Application with a basic OAuth login and then
+display information about that user.
 
-https://developer.github.com/v3/oauth/#2-github-redirects-back-to-your-site
-
-If everything works out we'll receive an access token we'll want to store in sesion
-
-3. Sessions
-
-https://github.com/expressjs/session
-
-4. Talking with the API
-
-Future requests can be made with the token in session. We'll just need to configure out requests right.
-
-https://developer.github.com/v3/#user-agent-required
